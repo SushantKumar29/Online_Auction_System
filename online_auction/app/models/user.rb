@@ -6,13 +6,20 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :validatable
   validates :email, presence: true, uniqueness: true, on: :create
-  validates :password, presence: true, length: { minimum: 8 }, confirmation: true, on: :create
+  validates :email, presence: true, uniqueness: true, on: :update
+  validates :password, presence: true, length: { in: 6..20 }, confirmation: true, on: :create
+  validates :password, presence: true, length: { in: 6..20 }, confirmation: false, on: :update, if: :password_changed?
 
   enum role: %i[admin moderator user]
-
+  has_one :profile, dependent: :destroy
+  has_many :products
   # ratyrate_rater
 
   after_create :default_role, :create_profile
+
+  def password_changed?
+    !password.blank?
+  end
 
   private
 
@@ -21,7 +28,7 @@ class User < ActiveRecord::Base
   end
 
   def create_profile
-    profile = Profile.create(user: self)
+    self.profile = Profile.create(user: self)
     profile.image = Image.create
   end
 end

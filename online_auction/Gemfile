@@ -47,7 +47,12 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'devise'
+
+  gem 'letter_opener_web'
+  gem 'pry-nav'
   gem 'pry-rails'
+  gem 'pry-remote'
+
   gem 'audited'
   gem 'paperclip'
   gem 'font-awesome-rails'
