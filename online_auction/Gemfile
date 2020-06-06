@@ -8,7 +8,7 @@ gem 'rails', '4.2.8'
 # gem 'sqlite3'
 
 # ==================== Custom Gems =====================
-gem 'mysql2', '~> 0.4.10'
+
 gem 'bootstrap', '~> 4.4.1'
 # ======================================================
 
@@ -34,6 +34,10 @@ gem 'rails_12factor', group: :production
 
 group :assets do
   gem 'turbo-sprockets-rails3'
+end
+
+group :production do
+  gem 'pg', '~> 1.2', '>= 1.2.3'
 end
 
 # Use ActiveModel has_secure_password
@@ -81,7 +85,7 @@ group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
   gem 'bullet'
-
+  gem 'mysql2', '~> 0.4.10'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end

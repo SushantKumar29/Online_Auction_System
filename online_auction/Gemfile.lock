@@ -151,6 +151,7 @@ GEM
       mime-types
       mimemagic (~> 0.3.0)
       terrapin (~> 0.6.0)
+    pg (1.2.3)
     popper_js (1.16.0)
     pry (0.12.2)
       coderay (~> 1.1.0)
@@ -306,6 +307,7 @@ DEPENDENCIES
   mailcatcher
   mysql2 (~> 0.4.10)
   paperclip
+  pg (~> 1.2, >= 1.2.3)
   pry-nav
   pry-rails
   pry-remote
