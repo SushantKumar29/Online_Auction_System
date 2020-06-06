@@ -1,6 +1,28 @@
 <div class="sidenav">
-  <%= link_to 'Our Products', products_path, class: '' %>
-  <a href="#services">Services</a>
-  <a href="#clients">Clients</a>
-  <a href="#contact">Contact</a>
+  <%= link_to products_path do %>
+    <%= image_tag(image_path('products.png'), class: '', title: 'Products') %>
+    <span>Products</span>
+  <% end %>
+  <% if signed_in? && current_user.admin? %>
+    <%= link_to profiles_path do %>
+      <%= image_tag(image_path('team.png'), class: '', title: 'Profiles') %>
+      <span>Profiles</span>
+    <% end %>
+    <%= link_to categories_path do %>
+      <%= image_tag(image_path('list.png'), class: '', title: 'Categories') %>
+      <span>Categories</span>
+    <% end %>
+  <% end %>
+  <a href="#services">
+    <%= image_tag(image_path('service.png'), class: '', title: 'Services') %>
+    <span>Services</span>
+  </a>
+  <a href="#clients">
+    <%= image_tag(image_path('clients.png'), class: '', title: 'Clients') %>
+    <span>Clients</span>
+  </a>
+  <a href="#contact">
+    <%= image_tag(image_path('contact.png'), class: '', title: 'Contact') %>
+    <span>Contact</span>
+  </a>
 </div>

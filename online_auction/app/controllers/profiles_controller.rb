@@ -33,11 +33,9 @@ class ProfilesController < ApplicationController
   end
 
   def rank
-    # byebug
     user = User.find_by_id(params[:id])
-    if user.user? || user.moderator_request?
+    if user.user?
       user.moderator!
-      user.update(moderator_request: false)
     elsif user.moderator?
       user.user!
     end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200516053509) do
+ActiveRecord::Schema.define(version: 20200531131348) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -31,10 +31,12 @@ ActiveRecord::Schema.define(version: 20200516053509) do
     t.string   "name",        limit: 255
     t.float    "price",       limit: 24
     t.text     "description", limit: 65535
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                                                       null: false
+    t.datetime "updated_at",                                                       null: false
     t.integer  "user_id",     limit: 4
     t.integer  "category_id", limit: 4
+    t.decimal  "minimum_bid",               precision: 15, scale: 2, default: 0.0, null: false
+    t.decimal  "current_bid",               precision: 15, scale: 2, default: 0.0, null: false
   end
 
   add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree

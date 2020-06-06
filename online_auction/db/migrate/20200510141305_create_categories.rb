@@ -1,5 +1,6 @@
 class CreateCategories < ActiveRecord::Migration
   def change
+    return if table_exists?(:categories)
     create_table :categories do |t|
       t.string :name
 

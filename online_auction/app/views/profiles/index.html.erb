@@ -1,0 +1,94 @@
+<% if signed_in? && current_user.admin? %>
+  <div class="col-md-12">
+    <div class="float-right">
+      <div class="btn-group float-right">
+        <button class="btn btn-info btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Filter
+        </button>
+        <div class="dropdown-menu dropdown-menu-right">
+          <%= link_to 'All', profiles_path, class: 'dropdown-item' %>
+          <%= link_to 'Moderators', profiles_path(:val => 1), class: 'dropdown-item' %>
+          <%= link_to 'Users', profiles_path(:val => 2), class: 'dropdown-item' %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <% if @users.empty? %>
+      <div>
+        <h2 class="text-danger text-center">No Users Found</h2>
+      </div>
+    <% else %>
+      <section id="team" class="pb-5">
+        <div class="container">
+          <h5 class="section-title h1">
+            <% if @role.nil? %>
+              Users
+            <% else %>
+              <%= @role.pluralize.humanize %>
+            <% end %> List</h5>
+          <div class="row">
+            <% @users.each do |user|%>
+              <!-- Team member -->
+              <div class="col-xs-12 col-sm-6 col-md-4">
+                <%# <div class="image-flip" ontouchstart="this.classList.toggle('hover');"> %>
+                <div class="">
+                  <div class="mainflip">
+                    <div class="frontside">
+                      <div class="card">
+                        <div class="card-body text-center">
+                          <p>
+                            <% if user.profile.image.present? && !user.profile.image.name.nil? %>
+                              <%= image_tag user.profile.image.image.url, class: "author-img" %>
+                            <% else %>
+                              <%= image_tag(image_path('avatar.jpg'), class: "author-img") %>
+                            <% end %>
+                          </p>
+                          <h4 class="card-title">
+                            <%= link_to  get_user_name(user.profile).humanize, profile_path(user.profile.id), target: 'blank', class: "standard-link text-info" %>
+                            (<%= user.role.humanize %>)
+                          </h4>
+                          <p class="card-text">
+                            <% if user.profile.bio.present? %>
+                              <%= user.profile.bio %>
+                            <% else %>
+                              This section shows the user bio. Currently no bio added by the user
+                            <% end %>
+                          </p>
+                          <% if user.user? %>
+                            <div class="">
+                              <%= link_to '', profiles_rank_path(:id => user.id), class: 'fa fa-hand-o-up icon2 text-success col-md-2', title: 'Make Moderator' %>
+                            </div>
+                          <% elsif user.moderator? %>
+                            <div class="">
+                              <%= link_to '', profiles_rank_path(:id => user.id), class: 'fa fa-hand-o-down icon2 text-danger col-md-2', title: 'Make User' %>
+                            </div>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="backside">
+                      <div class="card">
+                        <div class="card-body text-center mt-4">
+                          <h4 class="card-title">User Bio Section</h4>
+                          <p class="card-text">
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </section>
+    <% end %>
+    <div class="mt-5 float-right">
+      <%= will_paginate @users, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+    </div>
+  </div>
+<% else %>
+  You Are not authorized to visit this page <br>
+  <%= link_to 'Go to Homepage', root_path, class: 'btn btn-info' %>
+<% end %>
