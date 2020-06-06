@@ -1,0 +1,226 @@
+/* line 1, /Users/susantas/Documents/Projects/Ruby_Projects/Online_Auction_System/online_auction/app/assets/stylesheets/welcome.scss */
+.my-card {
+  position: absolute;
+  left: 40%;
+  top: -20px;
+  border-radius: 50%;
+}
+
+/* line 8, /Users/susantas/Documents/Projects/Ruby_Projects/Online_Auction_System/online_auction/app/assets/stylesheets/welcome.scss */
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #108d6f;
+  border-color: #108d6f;
+  box-shadow: none;
+  outline: none;
+}
+
+/* line 16, /Users/susantas/Documents/Projects/Ruby_Projects/Online_Auction_System/online_auction/app/assets/stylesheets/welcome.scss */
+.btn-primary {
+  color: #fff;
+  background-color: #007b5e;
+  border-color: #007b5e;
+}
+
+/* line 22, /Users/susantas/Documents/Projects/Ruby_Projects/Online_Auction_System/online_auction/app/assets/stylesheets/welcome.scss */
+section {
+  padding: 60px 0;
+}
+
+/* line 26, /Users/susantas/Documents/Projects/Ruby_Projects/Online_Auction_System/online_auction/app/assets/stylesheets/welcome.scss */
+section .section-title {
+  text-align: center;
+  color: #007b5e;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+}
+
+/* line 33, /Users/susantas/Documents/Projects/Ruby_Projects/Online_Auction_System/online_auction/app/assets/stylesheets/welcome.scss */
+#team .card {
+  border: none;
+  background: #ffffff;
+}
+
+/* line 38, /Users/susantas/Documents/Projects/Ruby_Projects/Online_Auction_System/online_auction/app/assets/stylesheets/welcome.scss */
+.image-flip:hover .backside,
+.image-flip.hover .backside {
+  transform: rotateY(0deg);
+  border-radius: .25rem;
+}
+
+/* line 48, /Users/susantas/Documents/Projects/Ruby_Projects/Online_Auction_System/online_auction/app/assets/stylesheets/welcome.scss */
+.image-flip:hover .frontside,
+.image-flip.hover .frontside {
+  transform: rotateY(180deg);
+}
+
+/* line 56, /Users/susantas/Documents/Projects/Ruby_Projects/Online_Auction_System/online_auction/app/assets/stylesheets/welcome.scss */
+.mainflip {
+  -webkit-transition: 1s;
+  -webkit-transform-style: preserve-3d;
+  -ms-transition: 1s;
+  -moz-transition: 1s;
+  transform: perspective(1000px);
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transition: 1s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+/* line 69, /Users/susantas/Documents/Projects/Ruby_Projects/Online_Auction_System/online_auction/app/assets/stylesheets/welcome.scss */
+.frontside {
+  position: relative;
+  transform: rotateY(0deg);
+  z-index: 2;
+  margin-bottom: 30px;
+}
+
+/* line 77, /Users/susantas/Documents/Projects/Ruby_Projects/Online_Auction_System/online_auction/app/assets/stylesheets/welcome.scss */
+.backside {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: white;
+  transform: rotateY(-180deg);
+  box-shadow: 5px 7px 9px -4px #9e9e9e;
+}
+
+/* line 92, /Users/susantas/Documents/Projects/Ruby_Projects/Online_Auction_System/online_auction/app/assets/stylesheets/welcome.scss */
+.frontside,
+.backside {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transition: 1s;
+  -webkit-transform-style: preserve-3d;
+  -moz-transition: 1s;
+  -moz-transform-style: preserve-3d;
+  -o-transition: 1s;
+  -o-transform-style: preserve-3d;
+  -ms-transition: 1s;
+  -ms-transform-style: preserve-3d;
+  transition: 1s;
+  transform-style: preserve-3d;
+}
+
+/* line 110, /Users/susantas/Documents/Projects/Ruby_Projects/Online_Auction_System/online_auction/app/assets/stylesheets/welcome.scss */
+.frontside .card,
+.backside .card {
+  min-height: 312px;
+}
+
+/* line 115, /Users/susantas/Documents/Projects/Ruby_Projects/Online_Auction_System/online_auction/app/assets/stylesheets/welcome.scss */
+.backside .card a {
+  font-size: 18px;
+  color: #007b5e !important;
+}
+
+/* line 120, /Users/susantas/Documents/Projects/Ruby_Projects/Online_Auction_System/online_auction/app/assets/stylesheets/welcome.scss */
+.frontside .card .card-title,
+.backside .card .card-title {
+  color: #007b5e !important;
+}
+
+/* line 125, /Users/susantas/Documents/Projects/Ruby_Projects/Online_Auction_System/online_auction/app/assets/stylesheets/welcome.scss */
+.frontside .card .card-body img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+/* line 131, /Users/susantas/Documents/Projects/Ruby_Projects/Online_Auction_System/online_auction/app/assets/stylesheets/welcome.scss */
+.box {
+  padding: 60px 0px;
+}
+
+/* line 135, /Users/susantas/Documents/Projects/Ruby_Projects/Online_Auction_System/online_auction/app/assets/stylesheets/welcome.scss */
+.box-part {
+  background: #FFF;
+  border-radius: 0;
+  padding: 60px 10px;
+  margin: 30px 0px;
+}
+
+/* line 141, /Users/susantas/Documents/Projects/Ruby_Projects/Online_Auction_System/online_auction/app/assets/stylesheets/welcome.scss */
+.text {
+  margin: 20px 0px;
+}
+
+/* line 145, /Users/susantas/Documents/Projects/Ruby_Projects/Online_Auction_System/online_auction/app/assets/stylesheets/welcome.scss */
+.search-button {
+  position: fixed;
+  top: 5rem;
+  left: 65rem;
+}
+
+/* line 150, /Users/susantas/Documents/Projects/Ruby_Projects/Online_Auction_System/online_auction/app/assets/stylesheets/welcome.scss */
+#search {
+  height: auto;
+  padding: 0.2rem 1rem;
+}
+
+/* line 154, /Users/susantas/Documents/Projects/Ruby_Projects/Online_Auction_System/online_auction/app/assets/stylesheets/welcome.scss */
+.search-form .form-group {
+  float: right !important;
+  transition: all 0.35s, border-radius 0s;
+  width: 32px;
+  height: 32px;
+  background-color: #fff;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+}
+
+/* line 164, /Users/susantas/Documents/Projects/Ruby_Projects/Online_Auction_System/online_auction/app/assets/stylesheets/welcome.scss */
+.search-form .form-group input.form-control {
+  padding-right: 20px;
+  border: 0 none;
+  background: transparent;
+  box-shadow: none;
+  display: block;
+}
+
+/* line 171, /Users/susantas/Documents/Projects/Ruby_Projects/Online_Auction_System/online_auction/app/assets/stylesheets/welcome.scss */
+.search-form .form-group input.form-control::-webkit-input-placeholder {
+  display: none;
+}
+
+/* line 174, /Users/susantas/Documents/Projects/Ruby_Projects/Online_Auction_System/online_auction/app/assets/stylesheets/welcome.scss */
+.search-form .form-group input.form-control:-moz-placeholder {
+  /* Firefox 18- */
+  display: none;
+}
+
+/* line 178, /Users/susantas/Documents/Projects/Ruby_Projects/Online_Auction_System/online_auction/app/assets/stylesheets/welcome.scss */
+.search-form .form-group input.form-control::-moz-placeholder {
+  /* Firefox 19+ */
+  display: none;
+}
+
+/* line 182, /Users/susantas/Documents/Projects/Ruby_Projects/Online_Auction_System/online_auction/app/assets/stylesheets/welcome.scss */
+.search-form .form-group input.form-control:-ms-input-placeholder {
+  display: none;
+}
+
+/* line 185, /Users/susantas/Documents/Projects/Ruby_Projects/Online_Auction_System/online_auction/app/assets/stylesheets/welcome.scss */
+.search-form .form-group:hover,
+.search-form .form-group.hover {
+  width: 100%;
+  border-radius: 4px 25px 25px 4px;
+}
+
+/* line 190, /Users/susantas/Documents/Projects/Ruby_Projects/Online_Auction_System/online_auction/app/assets/stylesheets/welcome.scss */
+.search-form .form-group span.form-control-feedback {
+  position: absolute;
+  top: -1px;
+  right: -2px;
+  z-index: 2;
+  display: block;
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  color: #3596e0;
+  left: initial;
+  font-size: 14px;
+}
