@@ -8,6 +8,7 @@ gem 'rails', '4.2.8'
 # gem 'sqlite3'
 
 # ==================== Custom Gems =====================
+gem 'devise'
 
 gem 'bootstrap', '~> 4.4.1'
 # ======================================================
@@ -52,7 +53,6 @@ end
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  gem 'devise'
 
   gem 'letter_opener_web'
   gem 'pry-nav'
