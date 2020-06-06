@@ -33,7 +33,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'rails_12factor', group: :production
 
 group :assets do
-  gem 'turbo-sprockets-rails3'
+  # gem 'turbo-sprockets-rails3'
 end
 
 group :production do
