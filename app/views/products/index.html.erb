@@ -1,31 +1,65 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Listing Products</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @products.each do |product| %>
-      <tr>
-        <td><%= product.name %></td>
-        <td><%= product.price %></td>
-        <td><%= product.description %></td>
-        <td><%= link_to 'Show', product %></td>
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Product', new_product_path %>
+<span class="ml-auto">
+  <%= link_to 'New Product', new_product_path, class: "btn btn-success" %>
+</span>
+<div class="col-md-12">
+  <% if @products.empty? %>
+    <div>
+      <h2 class="text-danger text-center">No Products Found</h2>
+    </div>
+  <% else %>
+    <section id="team" class="pb-5">
+      <div class="container">
+        <div class="row">
+          <% @products.each do |product|%>
+            <!-- Team member -->
+            <div class="col-xs-12 col-sm-6 col-md-4">
+              <%# <div class="image-flip" ontouchstart="this.classList.toggle('hover');"> %>
+              <div class="">
+                <div class="mainflip">
+                  <div class="frontside">
+                    <div class="card">
+                      <div class="card-body text-center">
+                        <p>
+                          <% if product.image.present? && !product.image.name.nil? %>
+                            <%= image_tag product.image.image.url, class: "avatar-img" %>
+                          <% else %>
+                            <%= image_tag(image_path('box.png'), class: "avatar-img") %>
+                          <% end %>
+                        </p>
+                        <h4 class="card-title">
+                          <%= link_to product.name.humanize, product_path(product.id), class: "standard-link text-info" %>
+                          <p class="text-danger"><%= image_tag(image_path('rupee.png'), style: "width: 25px; height: 20px; border-radius: 0;") %><%= product.price %></p>
+                          
+                        </h4>
+                        <div class="card-text" style="height: 4rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                          <% if product.description.present? %>
+                            <%= product.description %>
+                          <% else %>
+                            This section shows the product desctiption. Currently no description added by the user
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="backside">
+                    <div class="card">
+                      <div class="card-body text-center mt-4">
+                        <h4 class="card-title">Product Description Section</h4>
+                        <p class="card-text">
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </section>
+  <% end %>
+  <%# <div class="mt-5 float-right">
+    <%= will_paginate @products, renderer: WillPaginate::ActionView::BootstrapLinkRenderer % >
+  </div> %>
+</div>

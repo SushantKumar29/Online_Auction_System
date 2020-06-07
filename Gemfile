@@ -11,6 +11,7 @@ gem 'rails', '4.2.8'
 gem 'devise'
 gem 'paperclip'
 gem 'bootstrap', '~> 4.4.1'
+gem 'ckeditor'
 # ======================================================
 
 # Use SCSS for stylesheets
@@ -62,7 +63,6 @@ group :development, :test do
   gem 'audited'
   gem 'font-awesome-rails'
   gem 'mailcatcher'
-  gem 'ckeditor'
 
   gem 'paperclip'
   gem 'better_errors'
