@@ -9,7 +9,7 @@ gem 'rails', '4.2.8'
 
 # ==================== Custom Gems =====================
 gem 'devise'
-
+gem 'paperclip'
 gem 'bootstrap', '~> 4.4.1'
 # ======================================================
 
@@ -60,7 +60,6 @@ group :development, :test do
   gem 'pry-remote'
 
   gem 'audited'
-  gem 'paperclip'
   gem 'font-awesome-rails'
   gem 'mailcatcher'
   gem 'ckeditor'
