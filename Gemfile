@@ -38,7 +38,7 @@ group :assets do
 end
 
 group :production do
-  gem 'pg', '~> 1.2', '>= 1.2.3'
+  gem 'pg', '~> 0.15'
 end
 
 # Use ActiveModel has_secure_password
