@@ -1,19 +1,49 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @product.price %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @product.description %>
-</p>
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<div class="container mt-5">
+  <div class="container row">
+    <div class="col-md-6 product_img">
+      <% if @product.image.present? %>
+        <%= image_tag @product.image.url, style: "width: 20rem; height: 20rem; border-radius: 0;" %>
+      <% else %>
+        <%= image_tag(image_path('gallery.png'), style: "width: 20rem; height: 20rem; border-radius: 0;") %>
+        <br />
+        No Photos uploaded
+      <% end %>
+    </div>
+    <div class="col-md-6 product_content">
+      <h4><%= @product.name %></h4>
+      <p><%= @product.description %></p>
+      <p>
+        Bid Price:
+        <span class="text-danger">
+          <%= image_tag(image_path('rupee.png'), style: "width: 25px; height: 20px; border-radius: 0;") %>
+          <% if @product.bid.current_bid > @product.price %>
+            <%= @product.bid.current_bid %>
+          <% else %>
+            <%= @product.price %>
+          <% end %>
+        </span>
+      </p>
+      <p>Last Bidding Date: <%= Date.parse(@product.last_bidding_date.to_s) %> </p>
+      <% if @product.last_bidding_date >= Date.today %>
+        <div class="space-ten">
+          <h3>Set your bid:</h3>
+          <%= form_for @product.bid, url: update_bid_product_path(@product) do |f| %>
+            <div class="form-group row">
+              <label for="productPrice" class="col-sm-2 col-form-label">Price</label>
+              <div class="col-sm-10">
+                <%= f.number_field :current_bid, step: 0.5, autocomplete: "price", class: 'form-control', placeholder: 'Price', required: true %>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="actions col-sm-6">
+                <%= f.submit "Update", class: "btn btn-success" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="space-ten">This product is alreay sold</div>
+      <% end %>
+    </div>
+  </div>
+</div>

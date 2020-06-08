@@ -1,29 +1,24 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Listing Categories</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @categories.each do |category| %>
-      <tr>
-        <td><%= category.name %></td>
-        <% if current_user.admin? || current_user == product.user?%>
-          <td><%= link_to 'Show', category %></td>
-          <td><%= link_to 'Edit', edit_category_path(category) %></td>
-          <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<span class="ml-auto">
+  <%= link_to 'New Category', new_category_path, class: "btn btn-success" %>
+</span>
+<div class="container p-5 row w-100">
+  <% @categories.each do |category| %>
+    <div class="col-md-3">
+      <div class="card border-info mx-sm-1 p-3" style="width: 15rem;">
+        <%= link_to category, method: :delete, data: { confirm: 'Are you sure?' }, class: "delete-category" do %>
+          <i class="fa fa-times" aria-hidden="true" title="Delete"></i>
         <% end %>
-      </tr>
+        <div class="card border-info shadow text-info p-3 my-card" ><span class="<%=category.get_color_class%>" aria-hidden="true"></span></div>
+        <div class="text-info text-center mt-3 w-100">
+          <h4><%= category.name %></h4>
+        </div>
+        <div class="text-info text-center mt-2 w-100">
+          <h1><%=category.products.size%></h1>
+        </div>
+      </div>
+    </div>
+    <% if current_user.admin? || current_user == product.user?%>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Category', new_category_path %>
+  <% end %>
+</div>

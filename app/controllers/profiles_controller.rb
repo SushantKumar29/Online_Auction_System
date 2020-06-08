@@ -7,10 +7,10 @@ class ProfilesController < ApplicationController
 
   def index
     if params[:val].present?
-      @users = User.includes([profile: :image]).where(role: params[:val])
+      @users = User.includes(:profile).where(role: params[:val])
       @role = @users.first.role unless @users.empty?
     else
-      @users = User.includes([profile: :image]).all
+      @users = User.includes(:profile).all
       @role = 'user'
     end
     user_paginate
@@ -21,7 +21,6 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    @profile.image.update(image: image_params)
     if @profile.update(profile_params)
       unless @profile.name.nil?
         @profile.update(slug: @profile.name.split(' ')[0] + '_' + @profile.id).capitalize
@@ -61,18 +60,11 @@ class ProfilesController < ApplicationController
   end
 
   def profile_params
-    params.require(:profile).permit(:name, :public_email,
-                                    :location, :country, :profession, :organization,
-                                    :facebook, :twitter, :instagram, :linkedin, :youtube,
-                                    :bio, :slug)
+    params.require(:profile).permit(:name, :location, :country, :bio, :mobile, :image)
   end
 
   def record_not_found
     # render partial: 'layouts/not_found', status: 404
-  end
-
-  def image_params
-    params[:profile][:image]
   end
 
   def user_paginate

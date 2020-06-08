@@ -2,13 +2,18 @@
 
 Rails.application.routes.draw do
   devise_for :users, path: 'users', controllers: {
-    confirmations: 'confirmations',
+    confirmations: 'confirmations'
   }
   get 'welcome/index'
 
-  resources :products
+  resources :products do
+    member do
+      patch :update_bid
+    end
+  end
+
   resources :categories
-  
+
   get '/profiles/rank' => 'profiles#rank'
   get 'profiles/rank_request' => 'profiles#rank_request'
   resources :profiles

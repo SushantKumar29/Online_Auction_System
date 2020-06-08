@@ -1,7 +1,7 @@
 <% if signed_in? && current_user.admin? %>
   <div class="col-md-12">
-    <div class="float-right">
-      <div class="btn-group float-right">
+    <div class="">
+      <div class="btn-group mt-2" style='margin-left: 78rem;'>
         <button class="btn btn-info btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Filter
         </button>
@@ -38,8 +38,8 @@
                       <div class="card">
                         <div class="card-body text-center">
                           <p>
-                            <% if user.profile.image.present? && !user.profile.image.name.nil? %>
-                              <%= image_tag user.profile.image.image.url, class: "author-img" %>
+                            <% if user.profile.image.present?%>
+                              <%= image_tag user.profile.image.url, class: "author-img" %>
                             <% else %>
                               <%= image_tag(image_path('avatar.jpg'), class: "author-img") %>
                             <% end %>

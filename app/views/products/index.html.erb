@@ -20,17 +20,22 @@
                   <div class="frontside">
                     <div class="card">
                       <div class="card-body text-center">
+                        <%= link_to product, method: :delete, data: { confirm: 'Are you sure?' }, class: "delete-product" do %>
+                          <i class="fa fa-times" aria-hidden="true" title="Delete"></i>
+                        <% end %>
                         <p>
-                          <% if product.image.present? && !product.image.name.nil? %>
-                            <%= image_tag product.image.image.url, class: "avatar-img" %>
+                          <% if product.image.present? %>
+                            <%= image_tag product.image.url, class: "avatar-img" %>
                           <% else %>
                             <%= image_tag(image_path('box.png'), class: "avatar-img") %>
                           <% end %>
                         </p>
                         <h4 class="card-title">
                           <%= link_to product.name.humanize, product_path(product.id), class: "standard-link text-info" %>
-                          <p class="text-danger"><%= image_tag(image_path('rupee.png'), style: "width: 25px; height: 20px; border-radius: 0;") %><%= product.price %></p>
-                          
+                          <p class="text-danger">
+                            <%= image_tag(image_path('rupee.png'), style: "width: 25px; height: 20px; border-radius: 0;") %>
+                            <%= product.price %>
+                          </p>
                         </h4>
                         <div class="card-text" style="height: 4rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                           <% if product.description.present? %>

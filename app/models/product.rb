@@ -4,7 +4,11 @@ class Product < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
   has_one :bid
-  has_one :image, as: :avatar, dependent: :destroy
+
+  has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, 
+                      default_url: "/images/:style/box.png",
+                      dependent: :destroy
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
   after_create :set_default, :create_bid
 

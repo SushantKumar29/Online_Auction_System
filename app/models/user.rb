@@ -28,7 +28,6 @@ class User < ActiveRecord::Base
   end
 
   def create_profile
-    self.profile = Profile.create(user: self)
-    profile.image = Image.create
+    self.profile = Profile.create(user: self, name: email.split('@').first.humanize)
   end
 end
