@@ -8,53 +8,61 @@
       </div>
     </form>
   </div>
-  <section>
+  <section style='padding: 0;'>
     <h5 class="section-title h1">OUR PRODUCTS</h5>
     <div class="row w-100">
-      <div class="col-md-3">
-        <div class="card border-info mx-sm-1 p-3">
-          <div class="card border-info shadow text-info p-3 my-card" ><span class="fa fa-car" aria-hidden="true"></span></div>
-          <div class="text-info text-center mt-3">
-            <h4>Cars</h4>
-          </div>
-          <div class="text-info text-center mt-2">
-            <h1>234</h1>
+      <% @products.each do |product|%>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <div class="">
+            <div class="mainflip">
+              <div class="frontside">
+                <div class="card">
+                  <div class="card-body text-center">
+                    <% if current_user && (current_user.admin? || current_user == product.user) %>
+                      <%= link_to product, method: :delete, data: { confirm: 'Are you sure?' }, class: "delete-product" do %>
+                        <i class="fa fa-times" aria-hidden="true" title="Delete"></i>
+                      <% end %>
+                    <% end %>
+                    <p>
+                      <% if product.image.present? %>
+                        <%= image_tag product.image.url, class: "avatar-img" %>
+                      <% else %>
+                        <%= image_tag(image_path('box.png'), class: "avatar-img") %>
+                      <% end %>
+                    </p>
+                    <h4 class="card-title">
+                      <%= link_to product.name.humanize, product_path(product.id), class: "standard-link text-info" %>
+                      <p class="text-danger">
+                        <%= image_tag(image_path('rupee.png'), style: "width: 25px; height: 20px; border-radius: 0;") %>
+                        <%= product.price %>
+                      </p>
+                    </h4>
+                    <div class="card-text" style="height: 4rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                      <% if product.description.present? %>
+                        <%= product.description %>
+                      <% else %>
+                        This section shows the product desctiption. Currently no description added by the user
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="backside">
+                <div class="card">
+                  <div class="card-body text-center mt-4">
+                    <h4 class="card-title">Product Description Section</h4>
+                    <p class="card-text">
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card border-success mx-sm-1 p-3">
-          <div class="card border-success shadow text-success p-3 my-card"><span class="fa fa-eye" aria-hidden="true"></span></div>
-          <div class="text-success text-center mt-3">
-            <h4>Eyes</h4>
-          </div>
-          <div class="text-success text-center mt-2">
-            <h1>9332</h1>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card border-danger mx-sm-1 p-3">
-          <div class="card border-danger shadow text-danger p-3 my-card" ><span class="fa fa-heart" aria-hidden="true"></span></div>
-          <div class="text-danger text-center mt-3">
-            <h4>Hearts</h4>
-          </div>
-          <div class="text-danger text-center mt-2">
-            <h1>346</h1>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card border-warning mx-sm-1 p-3">
-          <div class="card border-warning shadow text-warning p-3 my-card" ><span class="fa fa-inbox" aria-hidden="true"></span></div>
-          <div class="text-warning text-center mt-3">
-            <h4>Inbox</h4>
-          </div>
-          <div class="text-warning text-center mt-2">
-            <h1>346</h1>
-          </div>
-        </div>
-      </div>
+      <% end %>
+    </div>
+    <div class='float-right'>
+      <%= link_to 'View More...', products_path, class: "standard-link text info" %>
     </div>
   </section>
 </div>

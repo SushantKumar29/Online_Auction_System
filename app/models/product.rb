@@ -3,7 +3,7 @@
 class Product < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
-  has_one :bid
+  has_one :bid, dependent: :destroy
 
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, 
                       default_url: "/images/:style/box.png",
