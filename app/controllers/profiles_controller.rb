@@ -17,6 +17,9 @@ class ProfilesController < ApplicationController
   end
 
   def show
+    @author = @profile.user
+    @products_sold = @author.products.where(status: 'sold').size
+    @products_bought = Bid.where(status: 'sold').where(buyer_id: @author.id).size
     render :show
   end
 

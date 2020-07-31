@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Product < ActiveRecord::Base
+  include ProfilesHelper
+  
   belongs_to :user
   belongs_to :category
   has_one :bid, dependent: :destroy
@@ -15,7 +17,7 @@ class Product < ActiveRecord::Base
   private
 
   def set_default
-    self.status = 'pending'
+    update_attributes(status: 'pending')
   end
 
   def create_bid

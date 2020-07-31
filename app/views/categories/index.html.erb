@@ -2,9 +2,9 @@
 <span class="ml-auto">
   <%= link_to 'New Category', new_category_path, class: "btn btn-success" %>
 </span>
-<div class="container p-5 row w-100">
+<div class="row m-5">
   <% @categories.each do |category| %>
-    <div class="col-md-3">
+    <div class="col-md-2 m-3">
       <div class="card border-info mx-sm-1 p-3" style="width: 15rem;">
         <%= link_to category, method: :delete, data: { confirm: 'Are you sure?' }, class: "delete-category" do %>
           <i class="fa fa-times" aria-hidden="true" title="Delete"></i>

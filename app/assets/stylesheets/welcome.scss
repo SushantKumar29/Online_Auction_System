@@ -201,3 +201,36 @@ section .section-title {
   left: initial;
   font-size: 14px;
 }
+
+.icon2 {
+  background-color: transparent;
+  outline: none;
+  font-size: larger;
+  position: relative;
+  left: 10rem;
+  width: fit-content;
+  bottom: 1rem;
+  border-radius: 50%;
+}
+
+.row.vertical-divider {
+  overflow: hidden;
+}
+.row.vertical-divider > div[class^="col-"] {
+  text-align: center;
+  padding-bottom: 100px;
+  margin-bottom: -100px;
+  border-left: 1px solid #17a2b8;
+  border-right: 1px solid #17a2b8;
+}
+.row.vertical-divider div[class^="col-"]:first-child {
+  border-left: none;
+}
+.row.vertical-divider div[class^="col-"]:last-child {
+  border-right: none;
+}
+
+.vl {
+  border-left: 1px solid green;
+  height: auto;
+}

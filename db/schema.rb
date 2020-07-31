@@ -11,14 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200608121442) do
+ActiveRecord::Schema.define(version: 20200731120919) do
 
   create_table "bids", force: :cascade do |t|
-    t.string  "buyer_name",  limit: 255
-    t.decimal "current_bid",             precision: 15, scale: 2
-    t.decimal "sold_price",              precision: 15, scale: 2
-    t.string  "status",      limit: 255
-    t.integer "product_id",  limit: 4
+    t.string   "buyer_name",  limit: 255
+    t.decimal  "current_bid",             precision: 15, scale: 2
+    t.decimal  "sold_price",              precision: 15, scale: 2
+    t.string   "status",      limit: 255
+    t.integer  "product_id",  limit: 4
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+    t.integer  "buyer_id",    limit: 4
   end
 
   add_index "bids", ["product_id"], name: "index_bids_on_product_id", using: :btree
@@ -27,14 +30,6 @@ ActiveRecord::Schema.define(version: 20200608121442) do
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-  end
-
-  create_table "images", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.integer  "avatar_id",   limit: 4
-    t.string   "avatar_type", limit: 255
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
   end
 
   create_table "products", force: :cascade do |t|

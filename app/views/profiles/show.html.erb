@@ -1,85 +1,71 @@
 <div class="container">
-  <div>
-    <% if @profile %>
-      <span class="dashboard"><%= @profile.name %> </span>
-    <% else %>
-      <span class="dashboard">Profile</span>
-    <% end %>
-  </div>
-  <hr>
   <% if @profile %>
     <% user = @profile.user %>
     <div class="col-md-12">
       <div class="card border-info mx-sm-1 p-3" style="width: 100%; margin-top: 10rem;">
         <div class="card border-info shadow text-info p-3 profile-image">
           <% if @profile.image.present? %>
-              <%= image_tag @profile.image.url, class: '' %>
-            <% else %>
-              <%= image_tag(image_path('avatar.jpg'), style: 'width: 100%') %>
-            <% end %>
-            <% if signed_in? && (current_user == @author || @profile == current_user.profile) %>
-              <button type="button" class="fa fa-pencil-square-o  icon2" data-toggle="modal" data-target=""></button>
-            <% end %>
-        </div>
-        <div class="text-info text-center w-100">
-          <h4><%= @profile.name || @profile.user.email.split('@').first.humanize %></h4>
-        </div>
-        <div class="text-info text-center mt-2 w-100">
-          <h1>2</h1>
-        </div>
-      </div>
-    </div>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="fb-profile row">
-          <div class="col-md-12">
-            
-            
+            <%= image_tag @profile.image.url, class: '' %>
+          <% else %>
+            <%= image_tag(image_path('avatar.jpg'), style: 'width: 100%') %>
+          <% end %>
+          <% if signed_in? && (current_user == @author || @profile == current_user.profile) %>
+            <button type="button" class="icon2" data-toggle="modal" data-target="">
+              <i class="fa fa-pencil-square-o"></i>
+            </button>
+          <% end %>
+          <div class="text-info text-center text-uppercase w-100">
+            <h4><%= @profile.name || @profile.user.email.split('@').first.humanize %></h4>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-8">
-        <div data-spy="scroll" class="tabbable-panel">
-          <div class="tabbable-line">
-            <span class="user-bio-head">Bio</span>
-            <div class="tab-content">
-              <div class="tab-pane active " id="tab_default_1">
-                <div class="user-content">
-                  <%= raw @profile.bio %>
-                </div>
-              </div>
+        <div class="row vertical-divider ">
+          <div class="col-md-6 ">
+            <p class="h4 text-info">Activities</p>
+            <hr>
+            <div class="row ml-5 text-left">
+              <dt class="col-md-5">Products Entered:</dt>
+              <dd class="col-md-7"><%=@author.products.size%></dd>
+            </div>
+            <div class="row ml-5 text-left">
+              <dt class="col-md-5">Products Sold:</dt>
+              <dd class="col-md-7"><%=@products_sold%></dd>
+            </div>
+            <div class="row ml-5 text-left">
+              <dt class="col-md-5">Products Bought:</dt>
+              <dd class="col-md-7"><%=@products_bought%></dd>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <p class="h4 text-info">Details</p>
+            <hr>
+            <div class="row ml-5 text-left">
+              <dt class="col-md-3">Email:</dt>
+              <dd class="col-md-9 text-left"><%=@author.email%></dd>
+            </div>
+            <div class="row ml-5 text-left">
+              <dt class="col-md-3">Country:</dt>
+              <dd class="col-md-9 text-left"><%=@profile.country || "N/A"%></dd>
+            </div>
+            <div class="row ml-5 text-left">
+              <dt class="col-md-3">Location:</dt>
+              <dd class="col-md-9 text-left"><%=@profile.location || "N/A"%></dd>
+            </div>
+            <div class="row ml-5 text-left">
+              <dt class="col-md-3">Mobile:</dt>
+              <dd class="col-md-9 text-left"><%=@profile.mobile || "N/A"%></dd>
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="panel panel-default">
-          <div class="menu_title ">
-            <span class="">Profile Details</span>
-          </div>
-          <div class="panel-body">
-            <div class="row">
-              <div class="col-lg-12">
-                <label class="user-detail-label">Location :</label>
-                <span class="user-content"><%= @profile.location %></span>
-              </div>
-              <div>
-                <label class="user-detail-label">Country :</label>
-                <span class="user-content"><%= @profile.country %></span>
-              </div>
-            </div>
-          </div>
+        <hr>
+        <div class="ml-auto">
+          <% if user == current_user %>
+            <%= link_to 'Change Password', edit_user_registration_path, class: 'user-content text-info float-right' %>
+          <% end %>
         </div>
       </div>
-    </div>
-    <div class="col-sm-8 ">
     </div>
   </div>
-  <% if user == current_user %>
-    <%= link_to 'Change Password', edit_user_registration_path, class: 'user-content text-info float-right' %>
-  <% end %>
+</div>
 <% else %>
   <%= link_to 'Go to Dashboard', profile_path(current_user.profile), class: 'btn btn-info'  %>
 <% end %>
@@ -110,5 +96,3 @@
     </div>
   </div>
 </div>
-
-

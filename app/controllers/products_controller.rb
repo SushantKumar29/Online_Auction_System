@@ -11,7 +11,9 @@ class ProductsController < ApplicationController
 
   # GET /products/1
   # GET /products/1.json
-  def show; end
+  def show
+    @bid_user = User.find(@product.bid.buyer_id)
+  end
 
   # GET /products/new
   def new
@@ -63,12 +65,16 @@ class ProductsController < ApplicationController
 
   def update_bid
     respond_to do |format|
-      if @product.bid.update(product_bid_params)
-        format.html { redirect_to @product, notice: 'Bid Placed Successfully.' }
-        format.json { render :show, status: :ok, location: @product }
-      else
-        format.html { render :edit }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
+      if valid_bid
+        if @product.bid.update(product_bid_params)
+          format.html { redirect_to @product, notice: 'Bid Placed Successfully.' }
+          format.json { render :show, status: :ok, location: @product }
+        else
+          format.html { redirect_to @product }
+          format.json { render json: @product.errors, status: :unprocessable_entity }
+        end
+      else 
+        format.html { redirect_to @product, notice:{ type: 'error', message: 'Bid Price Must Be Higher Than Previous Bid Price.' }}
       end
     end
   end
@@ -85,6 +91,16 @@ class ProductsController < ApplicationController
   end
 
   def product_bid_params
-    params.require(:bid).permit(:current_bid)
+    user_name = get_user_name(current_user)
+    params.require(:bid).permit(:current_bid).merge!({ buyer_id: current_user.id, buyer_name: user_name })
   end
+
+  def get_user_name(user)
+    user.profile.name || user.email.split('@').first
+  end
+
+  def valid_bid
+    @product.bid.current_bid.to_f < params[:bid][:current_bid].to_f
+  end
+
 end

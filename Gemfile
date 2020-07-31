@@ -12,6 +12,10 @@ gem 'devise'
 gem 'paperclip'
 gem 'bootstrap', '~> 4.4.1'
 gem 'ckeditor'
+# gem 'whenever', require: false
+gem 'redis'
+gem 'sidekiq'
+gem 'sidekiq-cron'
 # ======================================================
 
 # Use SCSS for stylesheets
