@@ -16,3 +16,135 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function () {
+  $(".notice").delay(3000).slideUp();
+
+  $("#search").keyup(function (event) {
+    $("#search-values").css("background-color", "white");
+  });
+
+  $("#profile-validate").click(function () {
+    // var emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+    var mobileRegex = /^[0-9]{10}$/;
+
+    // var emailRegexValidate = regexValidation(
+    //   $("#profile_public_email"),
+    //   $("#public-email-error"),
+    //   emailRegex
+    // );
+    var mobileRegexValidate = regexValidation(
+      $("#profile_mobile"),
+      $("#mobile-error"),
+      mobileRegex
+    );
+    var nameLengthValidate = lengthValidation(
+      $("#profile_name"),
+      $("#name-error"),
+      3,
+      20
+    );
+
+    if (nameLengthValidate == true && mobileRegexValidate == true)
+      $("#profile_details_form").submit();
+  });
+
+  $("#image-validate").click(function () {
+    var extension = $("#profile_image").val().split(".").pop().toLowerCase();
+
+    if (
+      imageValidation($("#profile_image"), $("#image-error"), extension) == true
+    )
+      $("#image_form").submit();
+  });
+
+  $("#bio-validate").click(function () {
+    $("#bio_form").submit();
+  });
+  $("#social-media-validate").click(function () {
+    if (
+      $("#profile_facebook").val().trim() == "" &&
+      $("#profile_twitter").val().trim() == "" &&
+      $("#profile_instagram").val().trim() == "" &&
+      $("#profile_linkedin").val().trim() == "" &&
+      $("#profile_youtube").val().trim() == ""
+    )
+      $("#social-media-error")
+        .slideDown()
+        .html(
+          "<span class='error'>Provide Atleast One Social Media Link</span>"
+        );
+    else {
+      $("#social-media-error").slideUp();
+      $("#social_media_form").submit();
+    }
+  });
+
+  $("#report-button").click(function () {
+    if (blankValidation($("#report_description"), $("#report-error")))
+      $("#report_form").submit();
+  });
+});
+
+// bootstrap-tagsinput.js file - add in local
+
+function blankValidation(element, errorElement) {
+  if (!$(element).val().trim()) {
+    $(errorElement)
+      .slideDown()
+      .html("<span class='error'>Cannot Be Blank</span>");
+    $(element).css("border", "solid red 1px");
+    return false;
+  } else {
+    $(errorElement).slideUp();
+    $(element).css("border", "solid black 1px");
+    return true;
+  }
+}
+
+function regexValidation(element, errorElement, regex) {
+  if (!regex.test($(element).val())) {
+    $(errorElement)
+      .slideDown()
+      .html("<span class='error'>Invalid Mobile</span>");
+    $(element).css("border", "solid red 1px");
+    return false;
+  } else {
+    $(errorElement).slideUp();
+    $(element).css("border", "solid black 1px");
+    return true;
+  }
+}
+
+function lengthValidation(element, errorElement, minLenght, maxLength) {
+  if (
+    $(element).val().trim().length < minLenght ||
+    $(element).val().length > maxLength
+  ) {
+    $(errorElement)
+      .slideDown()
+      .html(
+        "<span class='error'>should be minimum 3 and maximum 20 characters</span>"
+      );
+    $(element).css("border", "solid red 1px");
+    return false;
+  } else {
+    $(errorElement).slideUp();
+    $(element).css("border", "solid black 1px");
+    return true;
+  }
+}
+
+function imageValidation(element, errorElement, extension) {
+  if ($.inArray(extension, ["jpg", "jpeg", "png"]) == -1) {
+    $(errorElement)
+      .slideDown()
+      .html("<span class='error'>Invalid Image Type</span>");
+    $(element).css("border", "solid red 1px");
+    return false;
+  } else {
+    $(errorElement).slideUp();
+    $(element).css("border", "solid black 1px");
+    return true;
+  }
+}

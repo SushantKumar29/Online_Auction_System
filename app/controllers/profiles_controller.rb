@@ -24,10 +24,8 @@ class ProfilesController < ApplicationController
   end
 
   def update
+    @profile.update(image: image_params) if params[:profile][:image]
     if @profile.update(profile_params)
-      unless @profile.name.nil?
-        @profile.update(slug: @profile.name.split(' ')[0] + '_' + @profile.id).capitalize
-      end
       redirect_to @profile, notice: 'Profile Updated Successfully'
     else
       render :show
@@ -66,6 +64,10 @@ class ProfilesController < ApplicationController
     params.require(:profile).permit(:name, :location, :country, :bio, :mobile, :image)
   end
 
+  def image_params
+    params[:profile][:image]
+  end
+  
   def record_not_found
     # render partial: 'layouts/not_found', status: 404
   end
