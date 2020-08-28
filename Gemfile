@@ -66,6 +66,7 @@ group :development, :test do
 
   gem 'audited'
   gem 'font-awesome-rails'
+  gem 'font-awesome-sass'
   gem 'mailcatcher'
 
   gem 'paperclip'

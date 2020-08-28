@@ -98,6 +98,8 @@ GEM
     ffi (1.13.0)
     font-awesome-rails (4.7.0.5)
       railties (>= 3.2, < 6.1)
+    font-awesome-sass (5.13.0)
+      sassc (>= 1.11)
     friendly_id (5.3.0)
       activerecord (>= 4.0.0)
     globalid (0.4.2)
@@ -309,6 +311,7 @@ DEPENDENCIES
   delayed_job
   devise
   font-awesome-rails
+  font-awesome-sass
   friendly_id
   jbuilder (~> 2.0)
   jquery-rails
