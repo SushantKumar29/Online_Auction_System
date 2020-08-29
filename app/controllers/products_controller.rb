@@ -12,7 +12,11 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
-    @bid_user = User.find(@product.bid.buyer_id)
+    @bid_user = if @product.bid.buyer_id
+        User.find(@product.bid.buyer_id)
+      else
+        current_user
+      end
   end
 
   # GET /products/new
@@ -30,7 +34,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.html { redirect_to @product, notice: "Product was successfully created." }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }
@@ -44,7 +48,7 @@ class ProductsController < ApplicationController
   def update
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+        format.html { redirect_to @product, notice: "Product was successfully updated." }
         format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit }
@@ -58,7 +62,7 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
     respond_to do |format|
-      format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
+      format.html { redirect_to products_url, notice: "Product was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -67,19 +71,20 @@ class ProductsController < ApplicationController
     respond_to do |format|
       if valid_bid
         if @product.bid.update(product_bid_params)
-          format.html { redirect_to @product, notice: 'Bid Placed Successfully.' }
+          format.html { redirect_to @product, notice: "Bid Placed Successfully." }
           format.json { render :show, status: :ok, location: @product }
         else
           format.html { redirect_to @product }
           format.json { render json: @product.errors, status: :unprocessable_entity }
         end
-      else 
-        format.html { redirect_to @product, notice:{ type: 'error', message: 'Bid Price Must Be Higher Than Previous Bid Price.' }}
+      else
+        format.html { redirect_to @product, notice: { type: "error", message: "Bid Price Must Be Higher Than Previous Bid Price." } }
       end
     end
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_product
     @product = Product.find(params[:id])
@@ -96,11 +101,10 @@ class ProductsController < ApplicationController
   end
 
   def get_user_name(user)
-    user.profile.name || user.email.split('@').first
+    user.profile.name || user.email.split("@").first
   end
 
   def valid_bid
     @product.bid.current_bid.to_f < params[:bid][:current_bid].to_f
   end
-
 end
