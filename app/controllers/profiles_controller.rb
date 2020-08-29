@@ -13,7 +13,6 @@ class ProfilesController < ApplicationController
       @users = User.includes(:profile).all
       @role = 'user'
     end
-    user_paginate
   end
 
   def show
