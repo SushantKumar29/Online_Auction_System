@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Category < ActiveRecord::Base
-  has_many :products
+  has_many :products, dependent: :destroy
 
   def get_color_class
     colours[name.parameterize.underscore.to_sym]
