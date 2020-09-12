@@ -20,7 +20,8 @@
                   <div class="card-body text-center">
                     <% if current_user && (current_user.admin? || current_user == product.user) %>
                       <%= link_to product, method: :delete, data: { confirm: 'Are you sure?' }, class: "delete-product" do %>
-                        <i class="fa fa-times" aria-hidden="true" title="Delete"></i>
+                        <%# <i class="fa fa-times" aria-hidden="true" title="Delete"></i> %>
+                        <span title="Delete">X</span>
                       <% end %>
                     <% end %>
                     <p>

@@ -57,11 +57,11 @@
                           </p>
                           <% if user.user? %>
                             <div class="">
-                              <%= link_to '', profiles_rank_path(:id => user.id), class: 'fa fa-hand-o-up icon2 text-success col-md-2', title: 'Make Moderator' %>
+                              <%= link_to 'Promote', profiles_rank_path(:id => user.id), class: 'text-success col-md-2', title: 'Make Moderator' %>
                             </div>
                           <% elsif user.moderator? %>
                             <div class="">
-                              <%= link_to '', profiles_rank_path(:id => user.id), class: 'fa fa-hand-o-down icon2 text-danger col-md-2', title: 'Make User' %>
+                              <%= link_to 'Demote', profiles_rank_path(:id => user.id), class: 'text-danger col-md-2', title: 'Make User' %>
                             </div>
                           <% end %>
                         </div>

@@ -7,7 +7,8 @@
     <div class="col-md-2 m-3">
       <div class="card border-info mx-sm-1 p-3" style="width: 15rem;">
         <%= link_to category, method: :delete, data: { confirm: 'Are you sure?' }, class: "delete-category" do %>
-          <i class="fa fa-times" aria-hidden="true" title="Delete"></i>
+          <%# <i class="fa fa-times" aria-hidden="true" title="Delete"></i> %>
+          <span title="Delete">X</span>
         <% end %>
         <div class="card border-info shadow text-info p-3 my-card" ><span class="<%=category.get_color_class%>" aria-hidden="true"></span></div>
         <div class="text-info text-center mt-3 w-100">
