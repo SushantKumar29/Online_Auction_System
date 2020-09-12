@@ -17,6 +17,7 @@ class ProductsController < ApplicationController
       else
         current_user
       end
+    @bid_user_name = get_user_name(@bid_user)
   end
 
   # GET /products/new
